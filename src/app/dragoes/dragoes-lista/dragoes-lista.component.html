@@ -1,0 +1,56 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Dragões</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" [routerLink]="['novo']">Novo Dragão</button>
+      <button type="button" class="btn btn-secondary" (click)="buscarDragoes()">Atualizar</button>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <table class="table table-hover" *ngIf="dragoes$ | async as dragoes; else loadingError">
+      <thead>
+        <tr>
+          <th>Dragão</th>
+          <th>Tipo</th>
+          <th>Data de criação</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dragao of dragoes">
+          <td>{{dragao.name}}</td>
+          <td>{{dragao.type}}</td>
+          <td>{{dragao.createdAt | date}}</td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-primary mb-1 btn-sm" (click)="detalhesDragao(dragao.id)">
+                Detalhes
+              </button>
+
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="editarDragao(dragao.id)">
+                Atualizar
+              </button>
+
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="removerDragao(dragao)">
+                Remover
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loadingError>
+      <div *ngIf="error$ | async; else loading">
+        Erro ao carregar Dragões. Tente novamente mais tarde.
+      </div>
+      <ng-template #loading>
+        <span>Carregando Dragões...</span>
+      </ng-template>
+    </ng-template>
+
+  </div>
+</div>

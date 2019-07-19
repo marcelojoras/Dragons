@@ -1,0 +1,36 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Detalhes</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" (click)="voltar()">Voltar</button>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Dragão</th>
+          <th>Tipo</th>
+          <th>Data de criação</th>
+          <th>Histórias</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{dragao.id}}</td>
+          <td>{{dragao.name}}</td>
+          <td>{{dragao.type}}</td>
+          <td>{{dragao.createdAt | date}}</td>
+          <td>
+            <span *ngFor="let history of dragao.histories">{{history}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
